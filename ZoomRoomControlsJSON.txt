@@ -1,0 +1,121 @@
+{
+   "adapters": [
+     {
+       "model": "GenericNetworkAdapter",
+       "ip": "tcp://10.0.1.11:50000",
+       "ports": [
+         {
+           "id": "CrestronZRC",
+           "name": "Room Controls",
+           "methods": [
+             {
+               "id": "System",
+               "name": "System",
+               "command": "System %",
+               "params": [
+                 {
+                   "id": "Power_On",
+                   "name": "On",
+                   "value": "On\r"
+                 },
+                 {
+                   "id": "Power_Off",
+                   "name": "Off",
+                   "value": "Off\r"
+                 }
+               ],
+               "type": "actions"
+             },
+             {
+               "id": "Display",
+               "name": "Display",
+               "command": "Display %",
+               "params": [
+                 {
+                   "id": "Display_On",
+                   "name": "On",
+                   "value": "On\r"
+                 },
+                 {
+                   "id": "Display_Off",
+                   "name": "Off",
+                   "value": "Off\r"
+                 }
+               ],
+               "type": "actions"
+             },
+             {
+               "id": "Audio",
+               "name": "Audio",
+               "command": "Audio %",
+               "params": [
+                 {
+                   "id": "Preset_1",
+                   "name": "Preset 1",
+                   "value": "Preset 1\r"
+                 },
+                 {
+                   "id": "Preset_2",
+                   "name": "Preset 2",
+                   "value": "Preset 2\r"
+                 },
+                 {
+                   "id": "Preset_3",
+                   "name": "Preset 3",
+                   "value": "Preset 3\r"
+                 }
+               ],
+               "type": "actions"
+             },
+             {
+               "id": "Hidden",
+               "name": "Hidden",
+               "command": "Hidden %",
+               "params": [
+                 {
+                   "id": "F1",
+                   "name": "F1",
+                   "value": "F1\r"
+                 },
+                 {
+                   "id": "F2",
+                   "name": "F2",
+                   "value": "F2\r"
+                 }
+               ],
+               "type": "actions"
+             }
+           ]
+         }
+       ]
+     }
+   ],
+   "styles": [
+     "CrestronZRC.System.icon=icon_power",
+     "CrestronZRC.Display.icon=icon_tv",
+     "CrestronZRC.Audio.icon=icon_speaker",
+     "CrestronZRC.Hidden.invisible=true"
+   ],
+   "rules": {
+     "meeting_started": [
+       "CrestronZRC.System.Power_On"
+     ],
+     "meeting_ended": [
+       "CrestronZRC.System.Power_Off"
+     ],
+     "microphone_muted": [
+       "CrestronZRC.Audio.Preset_1"
+     ],
+     "microphone_unmuted": [
+       "CrestronZRC.Audio.Preset_2"
+     ],
+     "video_started": [],
+     "video_stopped": [],
+     "operation_time_started": [
+       "CrestronZRC.Hidden.F1"
+     ],
+     "operation_time_ended": [
+       "CrestronZRC.Hidden.F2"
+     ]
+   }
+ }
